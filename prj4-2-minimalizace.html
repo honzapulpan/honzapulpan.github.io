@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta charset="utf-8" />
-<title>prj4-1-linear-spline-symbolic</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>prj4-2-minimalizace</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
 
 <style type="text/css">
@@ -11775,20 +11775,19 @@ div#notebook {
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h4 id="Horn&#237;-odhady-dominantn&#237;ho-vlastn&#237;ho-&#269;&#237;sla-diferenci&#225;ln&#237;-rovnice-s-parametrem-pomoc&#237;-line&#225;rn&#237;ho-splinu-po&#269;&#237;tan&#233;-symbolicky">Horn&#237; odhady dominantn&#237;ho vlastn&#237;ho &#269;&#237;sla diferenci&#225;ln&#237; rovnice s parametrem pomoc&#237; line&#225;rn&#237;ho splinu po&#269;&#237;tan&#233; symbolicky<a class="anchor-link" href="#Horn&#237;-odhady-dominantn&#237;ho-vlastn&#237;ho-&#269;&#237;sla-diferenci&#225;ln&#237;-rovnice-s-parametrem-pomoc&#237;-line&#225;rn&#237;ho-splinu-po&#269;&#237;tan&#233;-symbolicky">&#182;</a></h4>
+<h4 id="Horn&#237;-odhady-dominantn&#237;ho-vlastn&#237;ho-&#269;&#237;sla-diferenci&#225;ln&#237;-rovnice-s-parametrem-pomoc&#237;-obecn&#233;ho-polynomu,-&#345;e&#353;eno-symbolicky">Horn&#237; odhady dominantn&#237;ho vlastn&#237;ho &#269;&#237;sla diferenci&#225;ln&#237; rovnice s parametrem pomoc&#237; obecn&#233;ho polynomu, &#345;e&#353;eno symbolicky<a class="anchor-link" href="#Horn&#237;-odhady-dominantn&#237;ho-vlastn&#237;ho-&#269;&#237;sla-diferenci&#225;ln&#237;-rovnice-s-parametrem-pomoc&#237;-obecn&#233;ho-polynomu,-&#345;e&#353;eno-symbolicky">&#182;</a></h4><p>Diferenciální rovnice $-u''(t) = \lambda (1+t) u(t)$</p>
+
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[196]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="o">*</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">sympy</span> <span class="k">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">Latex</span>
 <span class="n">init_printing</span><span class="p">()</span>
-
-<span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">t</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;a b c t&#39;</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -11801,29 +11800,24 @@ div#notebook {
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <hr>
-<h4 id="4-intervaly,-ekvidistatn&#237;-body">4 intervaly, ekvidistatn&#237; body<a class="anchor-link" href="#4-intervaly,-ekvidistatn&#237;-body">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Nejprve vytvoříme ekvidistatní body na intervalu $[0,1]$, hodnota uprostřed intervalu je $1$.</p>
+<h3 id="Polynom-3.-stupn&#283;">Polynom 3. stupn&#283;<a class="anchor-link" href="#Polynom-3.-stupn&#283;">&#182;</a></h3><ul>
+<li>$at^3+bt^2+ct+d$</li>
+<li>$d=0$</li>
+<li>$a=1$ </li>
+<li>výsledný polynom: $t^3+bt^2-(1+b)t$</li>
+</ul>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[197]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">count</span> <span class="o">=</span> <span class="n">Rational</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
-<span class="n">s_range</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">count</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
-<span class="n">s_value</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">a</span><span class="p">,</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">display</span><span class="p">(</span><span class="n">s_range</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">s_value</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">c</span><span class="p">,</span><span class="n">t</span> <span class="o">=</span> <span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;a b c t&#39;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">raw_poly</span> <span class="o">=</span> <span class="n">t</span><span class="o">**</span><span class="mi">3</span> <span class="o">+</span> <span class="n">b</span><span class="o">*</span><span class="n">t</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="p">(</span><span class="mi">1</span><span class="o">+</span><span class="n">b</span><span class="p">)</span><span class="o">*</span><span class="n">t</span>
+<span class="n">raw_poly</span>
 </pre></div>
 
 </div>
@@ -11836,75 +11830,13 @@ div#notebook {
 
 <div class="output_area">
 
-<div class="prompt"></div>
-
-
-
-
-<div class="output_latex output_subarea ">
-$$\left [ 0, \quad \frac{1}{4}, \quad \frac{1}{2}, \quad \frac{3}{4}, \quad 1\right ]$$
-</div>
-
-</div>
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-<div class="output_latex output_subarea ">
-$$\left [ 0, \quad a, \quad 1, \quad a, \quad 0\right ]$$
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Vyjádříme jednotlivé spline funkce a jejich intervaly.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[198]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fnc</span><span class="o">=</span><span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">count</span><span class="p">):</span>
-    <span class="n">slope</span> <span class="o">=</span> <span class="p">((</span><span class="n">s_value</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">s_value</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">s_range</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">s_range</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
-    <span class="n">shift</span> <span class="o">=</span> <span class="n">s_value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="p">(</span><span class="n">s_range</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">slope</span><span class="p">)</span>
-    <span class="n">fnc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simplify</span><span class="p">(</span><span class="n">slope</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="n">shift</span><span class="p">))</span>
-
-<span class="n">s_fnc</span> <span class="o">=</span> <span class="n">Piecewise</span><span class="p">(</span><span class="o">*</span><span class="p">[(</span><span class="n">f</span><span class="p">,</span> <span class="p">((</span><span class="n">t</span><span class="o">&gt;=</span><span class="n">x1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">t</span><span class="o">&lt;=</span><span class="n">x2</span><span class="p">)))</span> <span class="k">for</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">fnc</span><span class="p">,</span><span class="n">s_range</span><span class="p">,</span> <span class="n">s_range</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))])</span>
-<span class="n">s_fnc</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[198]:</div>
+<div class="prompt output_prompt">Out[3]:</div>
 
 
 
 
 <div class="output_latex output_subarea output_execute_result">
-$$\begin{cases} 4 a t & \text{for}\: t \geq 0 \wedge t \leq \frac{1}{4} \\2 a - 4 t \left(a - 1\right) - 1 & \text{for}\: t \geq \frac{1}{4} \wedge t \leq \frac{1}{2} \\- 2 a + 4 t \left(a - 1\right) + 3 & \text{for}\: t \geq \frac{1}{2} \wedge t \leq \frac{3}{4} \\4 a \left(- t + 1\right) & \text{for}\: t \geq \frac{3}{4} \wedge t \leq 1 \end{cases}$$
+$$b t^{2} + t^{3} - t \left(b + 1\right)$$
 </div>
 
 </div>
@@ -11917,17 +11849,18 @@ $$\begin{cases} 4 a t & \text{for}\: t \geq 0 \wedge t \leq \frac{1}{4} \\2 a - 
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Vyjádříme Rayleighův podíl pomocí spline funkcí.</p>
+<p>Vyjádření Rayleighova podílu pomocí dosazení obecného polynomu za neznámou funkci.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[199]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rq</span> <span class="o">=</span> <span class="n">simplify</span><span class="p">(</span><span class="n">integrate</span><span class="p">(</span><span class="n">diff</span><span class="p">(</span><span class="n">s_fnc</span><span class="p">,</span><span class="n">t</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,(</span><span class="n">t</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="n">integrate</span><span class="p">(</span><span class="n">s_fnc</span><span class="o">**</span><span class="mi">2</span><span class="p">,(</span><span class="n">t</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">diff_poly</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">raw_poly</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+<span class="n">rq</span> <span class="o">=</span> <span class="n">simplify</span><span class="p">(</span><span class="n">integrate</span><span class="p">(</span><span class="n">diff_poly</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="n">integrate</span><span class="p">((</span><span class="mi">1</span><span class="o">+</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">raw_poly</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)))</span>
 <span class="n">rq</span>
 </pre></div>
 
@@ -11941,13 +11874,13 @@ $$\begin{cases} 4 a t & \text{for}\: t \geq 0 \wedge t \leq \frac{1}{4} \\2 a - 
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[199]:</div>
+<div class="prompt output_prompt">Out[4]:</div>
 
 
 
 
 <div class="output_latex output_subarea output_execute_result">
-$$\frac{48 \left(2 a^{2} - 2 a + 1\right)}{2 a^{2} + a + 1}$$
+$$\frac{56 \left(5 b^{2} + 15 b + 12\right)}{42 b^{2} + 128 b + 99}$$
 </div>
 
 </div>
@@ -11960,23 +11893,24 @@ $$\frac{48 \left(2 a^{2} - 2 a + 1\right)}{2 a^{2} + a + 1}$$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Najdeme stacionární bod a určíme, zda se jedná o minimum.</p>
+<p>Najdeme stacionární body a určíme, zda se jedná o minima.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[200]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rq_diff</span> <span class="o">=</span> <span class="n">diff</span><span class="p">(</span><span class="n">rq</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
-<span class="n">sol_full</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">rq_diff</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">diff_rq</span> <span class="o">=</span> <span class="n">simplify</span><span class="p">(</span><span class="n">diff</span><span class="p">(</span><span class="n">rq</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
+<span class="n">res</span> <span class="o">=</span> <span class="n">solve</span><span class="p">(</span><span class="n">diff_rq</span><span class="p">,</span> <span class="n">b</span><span class="p">)</span>
+
+<span class="n">diff2_rq</span> <span class="o">=</span> <span class="n">simplify</span><span class="p">(</span><span class="n">diff</span><span class="p">(</span><span class="n">diff_rq</span><span class="p">,</span> <span class="n">b</span><span class="p">))</span>
 <span class="n">sol</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">sol_a</span> <span class="ow">in</span> <span class="n">sol_full</span><span class="p">:</span>
-    <span class="k">if</span> <span class="n">sol_a</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span> <span class="c1"># parametr a musí být větší než 0</span>
-        <span class="k">if</span> <span class="n">N</span><span class="p">(</span><span class="n">rq_diff</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">sol_a</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="p">:</span> <span class="c1"># pokud je druhá derivace kladná, jedná se o minimum</span>
-            <span class="n">sol</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sol_a</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">res</span><span class="p">:</span> 
+    <span class="k">if</span> <span class="n">N</span><span class="p">(</span><span class="n">diff2_rq</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">x</span><span class="p">))</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">sol</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="n">sol</span>
 </pre></div>
 
@@ -11990,13 +11924,13 @@ $$\frac{48 \left(2 a^{2} - 2 a + 1\right)}{2 a^{2} + a + 1}$$
 
 <div class="output_area">
 
-<div class="prompt output_prompt">Out[200]:</div>
+<div class="prompt output_prompt">Out[7]:</div>
 
 
 
 
 <div class="output_latex output_subarea output_execute_result">
-$$\left [ \frac{\sqrt{2}}{2}\right ]$$
+$$\left [ \frac{9}{10} + \frac{\sqrt{591}}{10}\right ]$$
 </div>
 
 </div>
@@ -12009,18 +11943,20 @@ $$\left [ \frac{\sqrt{2}}{2}\right ]$$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Pro všechny hodnoty parametru $a$, které minimalizují Rayleighův podíl, vyjádříme horní odhad dominantního vlastního čísla $\lambda_1$.</p>
+<p>Dosadíme minimum do funkce $u(t)$ a vykreslíme její graf.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[201]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">sol_a</span> <span class="ow">in</span> <span class="n">sol</span><span class="p">:</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">N</span><span class="p">(</span><span class="n">rq</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">sol_a</span><span class="p">)))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">s</span> <span class="ow">in</span> <span class="n">sol</span><span class="p">:</span>
+    <span class="n">u_func</span> <span class="o">=</span> <span class="n">raw_poly</span><span class="o">.</span><span class="n">subs</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="n">s</span><span class="p">)</span>
+    <span class="n">p1</span> <span class="o">=</span> <span class="n">plot</span><span class="p">(</span><span class="n">u_func</span><span class="p">,</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="o">-.</span><span class="mi">1</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">))</span>
+    <span class="n">simplify</span><span class="p">(</span><span class="n">u_func</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12038,8 +11974,10 @@ $$\left [ \frac{\sqrt{2}}{2}\right ]$$
 
 
 
-<div class="output_latex output_subarea ">
-$$10.3866420052212$$
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
 </div>
 
 </div>
@@ -12052,30 +11990,18 @@ $$10.3866420052212$$
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<hr>
-<h4 id="6-interval&#367;,-ekvidistatn&#237;-body">6 interval&#367;, ekvidistatn&#237; body<a class="anchor-link" href="#6-interval&#367;,-ekvidistatn&#237;-body">&#182;</a></h4>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Nejprve vytvoříme ekvidistatní body na intervalu $[0,1]$, hodnota uprostřed intervalu je $1$.</p>
+<p>Pro všechny hodnoty parametru $b$, které minimalizují Rayleighův podíl, vyjádříme horní odhad dominantního vlastního čísla $\lambda_1$.</p>
 
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[202]:</div>
+<div class="prompt input_prompt">In&nbsp;[15]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">count</span> <span class="o">=</span> <span class="n">Rational</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
-<span class="n">s_range</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">count</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">count</span><span class="o">+</span><span class="mi">1</span><span class="p">)]</span>
-<span class="n">s_value</span> <span class="o">=</span> <span class="p">[</span><span class="n">Rational</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">,</span><span class="n">Rational</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">b</span><span class="p">,</span><span class="n">a</span><span class="p">,</span><span class="n">Rational</span><span class="p">(</span><span class="mi">0</span><span class="p">)]</span>
-<span class="n">display</span><span class="p">(</span><span class="n">s_range</span><span class="p">)</span>
-<span class="n">display</span><span class="p">(</span><span class="n">s_value</span><span class="p">)</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rq</span> <span class="o">=</span> <span class="n">integrate</span><span class="p">(</span><span class="n">diff</span><span class="p">(</span><span class="n">u_func</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> <span class="o">/</span> <span class="n">integrate</span><span class="p">((</span><span class="mi">1</span><span class="o">+</span><span class="n">t</span><span class="p">)</span><span class="o">*</span><span class="n">u_func</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span> <span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> 
+<span class="n">N</span><span class="p">(</span><span class="n">rq</span><span class="p">)</span>
 </pre></div>
 
 </div>
@@ -12088,218 +12014,13 @@ $$10.3866420052212$$
 
 <div class="output_area">
 
-<div class="prompt"></div>
-
-
-
-
-<div class="output_latex output_subarea ">
-$$\left [ 0, \quad \frac{1}{6}, \quad \frac{1}{3}, \quad \frac{1}{2}, \quad \frac{2}{3}, \quad \frac{5}{6}, \quad 1\right ]$$
-</div>
-
-</div>
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-<div class="output_latex output_subarea ">
-$$\left [ 0, \quad a, \quad b, \quad 1, \quad b, \quad a, \quad 0\right ]$$
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Vyjádříme jednotlivé spline funkce a jejich intervaly.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[203]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">fnc</span><span class="o">=</span><span class="p">[]</span>
-<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">count</span><span class="p">):</span>
-    <span class="n">slope</span> <span class="o">=</span> <span class="p">((</span><span class="n">s_value</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">s_value</span><span class="p">[</span><span class="n">i</span><span class="p">])</span><span class="o">/</span><span class="p">(</span><span class="n">s_range</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span><span class="o">-</span><span class="n">s_range</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
-    <span class="n">shift</span> <span class="o">=</span> <span class="n">s_value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="p">(</span><span class="n">s_range</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">slope</span><span class="p">)</span>
-    <span class="n">fnc</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">simplify</span><span class="p">(</span><span class="n">slope</span><span class="o">*</span><span class="n">t</span> <span class="o">+</span> <span class="n">shift</span><span class="p">))</span>
-
-<span class="n">s_fnc</span> <span class="o">=</span> <span class="n">Piecewise</span><span class="p">(</span><span class="o">*</span><span class="p">[(</span><span class="n">f</span><span class="p">,</span> <span class="p">((</span><span class="n">t</span><span class="o">&gt;=</span><span class="n">x1</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">t</span><span class="o">&lt;=</span><span class="n">x2</span><span class="p">)))</span> <span class="k">for</span> <span class="p">(</span><span class="n">f</span><span class="p">,</span><span class="n">x1</span><span class="p">,</span><span class="n">x2</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">list</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">fnc</span><span class="p">,</span><span class="n">s_range</span><span class="p">,</span> <span class="n">s_range</span><span class="p">[</span><span class="mi">1</span><span class="p">:]))])</span>
-<span class="n">s_fnc</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[203]:</div>
+<div class="prompt output_prompt">Out[15]:</div>
 
 
 
 
 <div class="output_latex output_subarea output_execute_result">
-$$\begin{cases} 6 a t & \text{for}\: t \geq 0 \wedge t \leq \frac{1}{6} \\2 a - b - 6 t \left(a - b\right) & \text{for}\: t \geq \frac{1}{6} \wedge t \leq \frac{1}{3} \\3 b - 6 t \left(b - 1\right) - 2 & \text{for}\: t \geq \frac{1}{3} \wedge t \leq \frac{1}{2} \\- 3 b + 6 t \left(b - 1\right) + 4 & \text{for}\: t \geq \frac{1}{2} \wedge t \leq \frac{2}{3} \\- 4 a + 5 b + 6 t \left(a - b\right) & \text{for}\: t \geq \frac{2}{3} \wedge t \leq \frac{5}{6} \\6 a \left(- t + 1\right) & \text{for}\: t \geq \frac{5}{6} \wedge t \leq 1 \end{cases}$$
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Vyjádříme Rayleighův podíl pomocí spline funkcí.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[204]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rq</span> <span class="o">=</span> <span class="n">simplify</span><span class="p">(</span><span class="n">integrate</span><span class="p">(</span><span class="n">diff</span><span class="p">(</span><span class="n">s_fnc</span><span class="p">,</span><span class="n">t</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">,(</span><span class="n">t</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">/</span><span class="n">integrate</span><span class="p">(</span><span class="n">s_fnc</span><span class="o">**</span><span class="mi">2</span><span class="p">,(</span><span class="n">t</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)))</span>
-<span class="n">rq</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[204]:</div>
-
-
-
-
-<div class="output_latex output_subarea output_execute_result">
-$$\frac{108 \left(a^{2} + \left(a - b\right)^{2} + \left(b - 1\right)^{2}\right)}{2 a^{2} + a b + 2 b^{2} + b + 1}$$
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Najdeme stacionární bod a určíme, zda se jedná o minimum.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[205]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">rq_diff</span> <span class="o">=</span> <span class="p">[</span><span class="n">simplify</span><span class="p">(</span><span class="n">diff</span><span class="p">(</span><span class="n">rq</span><span class="p">,</span> <span class="n">x</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">]]</span>
-<span class="n">sol_full</span> <span class="o">=</span> <span class="n">solvers</span><span class="o">.</span><span class="n">solve</span><span class="p">(</span><span class="n">rq_diff</span><span class="p">,(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">))</span>
-
-<span class="n">sol</span> <span class="o">=</span> <span class="p">[]</span>
-<span class="k">for</span> <span class="n">sol_a</span><span class="p">,</span> <span class="n">sol_b</span> <span class="ow">in</span> <span class="n">sol_full</span><span class="p">:</span>
-    <span class="k">if</span> <span class="p">(</span><span class="n">sol_a</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span> <span class="o">&amp;</span> <span class="p">(</span><span class="n">sol_b</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">):</span> <span class="c1"># parametry a,b musí být větší než 0</span>
-        <span class="n">rq_diff2</span> <span class="o">=</span> <span class="p">[[</span><span class="n">simplify</span><span class="p">(</span><span class="n">rq</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">.</span><span class="n">diff</span><span class="p">(</span><span class="n">y</span><span class="p">))</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">]]</span> <span class="k">for</span> <span class="n">y</span> <span class="ow">in</span> <span class="p">[</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">]]</span>
-        <span class="n">uxx</span> <span class="o">=</span> <span class="n">simplify</span><span class="p">(</span><span class="n">rq_diff2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">subs</span><span class="p">([(</span><span class="n">a</span><span class="p">,</span><span class="n">sol_a</span><span class="p">),(</span><span class="n">b</span><span class="p">,</span><span class="n">sol_b</span><span class="p">)]))</span>
-        <span class="n">uxy</span> <span class="o">=</span> <span class="n">simplify</span><span class="p">(</span><span class="n">rq_diff2</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">subs</span><span class="p">([(</span><span class="n">a</span><span class="p">,</span><span class="n">sol_a</span><span class="p">),(</span><span class="n">b</span><span class="p">,</span><span class="n">sol_b</span><span class="p">)]))</span>
-        <span class="n">uyy</span> <span class="o">=</span> <span class="n">simplify</span><span class="p">(</span><span class="n">rq_diff2</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">subs</span><span class="p">([(</span><span class="n">a</span><span class="p">,</span><span class="n">sol_a</span><span class="p">),(</span><span class="n">b</span><span class="p">,</span><span class="n">sol_b</span><span class="p">)]))</span>
-        <span class="n">hess</span> <span class="o">=</span> <span class="n">N</span><span class="p">(</span><span class="n">uxx</span><span class="o">*</span><span class="n">uyy</span> <span class="o">-</span> <span class="n">uxy</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">hess</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">N</span><span class="p">(</span><span class="n">uxx</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
-                <span class="n">sol</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">sol_a</span><span class="p">,</span><span class="n">sol_b</span><span class="p">))</span>
-
-<span class="n">sol</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt output_prompt">Out[205]:</div>
-
-
-
-
-<div class="output_latex output_subarea output_execute_result">
-$$\left [ \left ( \frac{1}{2}, \quad \frac{\sqrt{3}}{2}\right )\right ]$$
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div>
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Pro všechny hodnoty parametrů $(a, b)$, které minimalizují Rayleighův podíl, vyjádříme horní odhad dominantního vlastního čísla $\lambda_1$.</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[206]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="k">for</span> <span class="n">sol_a</span><span class="p">,</span> <span class="n">sol_b</span> <span class="ow">in</span> <span class="n">sol</span><span class="p">:</span>
-    <span class="n">display</span><span class="p">(</span><span class="n">N</span><span class="p">(</span><span class="n">rq</span><span class="o">.</span><span class="n">subs</span><span class="p">([(</span><span class="n">a</span><span class="p">,</span><span class="n">sol_a</span><span class="p">),(</span><span class="n">b</span><span class="p">,</span><span class="n">sol_b</span><span class="p">)])))</span>
-</pre></div>
-
-</div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-<div class="prompt"></div>
-
-
-
-
-<div class="output_latex output_subarea ">
-$$10.0970887223642$$
+$$6.6339715525158$$
 </div>
 
 </div>
