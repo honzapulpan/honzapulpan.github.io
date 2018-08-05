@@ -11782,7 +11782,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[2]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># -*- coding: utf-8 -*-</span>
@@ -11790,8 +11790,28 @@ div#notebook {
 <span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">integrate</span>
 <span class="kn">from</span> <span class="nn">IPython.display</span> <span class="k">import</span> <span class="n">display</span><span class="p">,</span> <span class="n">Markdown</span><span class="p">,</span> <span class="n">Latex</span>
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</pre></div>
 
-<span class="n">c</span> <span class="o">=</span> <span class="mi">19999</span><span class="c1">#00; #c ... pocet kroku reseni ODE</span>
+</div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div>
+<div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<hr>
+<h4 id="1.-Numerick&#233;-&#345;e&#353;en&#237;-metodou-st&#345;elby-a-p&#367;len&#237;m-intervalu">1. Numerick&#233; &#345;e&#353;en&#237; metodou st&#345;elby a p&#367;len&#237;m intervalu<a class="anchor-link" href="#1.-Numerick&#233;-&#345;e&#353;en&#237;-metodou-st&#345;elby-a-p&#367;len&#237;m-intervalu">&#182;</a></h4>
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[8]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">c</span> <span class="o">=</span> <span class="mi">19999</span> <span class="c1">#c ... pocet kroku reseni ODE</span>
 
 <span class="k">def</span> <span class="nf">shooting</span><span class="p">(</span><span class="n">Eigenvalue</span><span class="p">,</span> <span class="n">steps</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">fun</span><span class="p">(</span><span class="n">t</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">E</span><span class="p">):</span>
@@ -11820,13 +11840,13 @@ div#notebook {
         <span class="k">else</span><span class="p">:</span>
             <span class="n">a</span> <span class="o">=</span> <span class="n">s</span>
         <span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span>
-        
-<span class="n">display</span><span class="p">(</span><span class="n">Latex</span><span class="p">(</span><span class="s1">&#39;Dominantní vlastní číslo $\lambda_1$ : &#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)))</span>
 
 <span class="n">solt</span><span class="p">,</span> <span class="n">soly</span> <span class="o">=</span> <span class="n">shooting</span><span class="p">(</span><span class="n">s</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">solt</span><span class="p">,</span> <span class="n">soly</span><span class="p">,</span> <span class="s1">&#39;r-&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">axis</span><span class="p">([</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="n">display</span><span class="p">(</span><span class="n">Latex</span><span class="p">(</span><span class="s1">&#39;Dominantní vlastní číslo $\lambda_1$ : &#39;</span><span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="p">)))</span>
 </pre></div>
 
 </div>
@@ -11844,8 +11864,10 @@ div#notebook {
 
 
 
-<div class="output_latex output_subarea ">
-Dominantní vlastní číslo $\lambda_1$ : 9.869625937280944
+<div class="output_png output_subarea ">
+<img src="data:image/png;base64,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
+"
+>
 </div>
 
 </div>
@@ -11857,8 +11879,8 @@ Dominantní vlastní číslo $\lambda_1$ : 9.869625937280944
 
 
 
-<div class="output_text output_subarea ">
-<pre>&lt;Figure size 640x480 with 1 Axes&gt;</pre>
+<div class="output_latex output_subarea ">
+Dominantní vlastní číslo $\lambda_1$ : 9.869625937280944
 </div>
 
 </div>
@@ -11883,11 +11905,16 @@ Dominantní vlastní číslo $\lambda_1$ : 9.869625937280944
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[9]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy.interpolate</span> <span class="k">import</span> <span class="n">CubicSpline</span>
-    
+
+<span class="kn">import</span> <span class="nn">sympy</span> <span class="k">as</span> <span class="nn">sp</span>
+<span class="kn">from</span> <span class="nn">sympy.functions</span> <span class="k">import</span> <span class="n">Piecewise</span>
+<span class="n">sp</span><span class="o">.</span><span class="n">init_printing</span><span class="p">()</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbols</span><span class="p">(</span><span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="n">real</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
 <span class="n">points_range</span> <span class="o">=</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">41</span><span class="p">)</span> <span class="c1"># rozsah poctu interpolacnich bodu</span>
 <span class="n">rp</span> <span class="o">=</span> <span class="p">[]</span>
 
@@ -13034,7 +13061,7 @@ Horní odhad dominantního vlastního čísla $\lambda_1$: 9.869612020518108
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[4]:</div>
+<div class="prompt input_prompt">In&nbsp;[10]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">from</span> <span class="nn">scipy</span> <span class="k">import</span> <span class="n">pi</span>
@@ -13059,7 +13086,7 @@ Horní odhad dominantního vlastního čísla $\lambda_1$: 9.869612020518108
 
 
 <span class="n">pi2</span> <span class="o">=</span> <span class="n">s</span>
-<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;##### Porovnání s hodnotou vypočtenou numericky (bisekcí) = </span><span class="si">{:1.15f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="p">)))</span>
+<span class="n">display</span><span class="p">(</span><span class="n">Markdown</span><span class="p">(</span><span class="s1">&#39;##### Porovnání s hodnotou vypočtenou numericky (půlením intervalu) = </span><span class="si">{:1.15f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="p">)))</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;body       lambda1        abs. chyba     rel.chyba&#39;</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--------------------------------------------------&#39;</span><span class="p">)</span>
 
@@ -13205,7 +13232,7 @@ Horní odhad dominantního vlastního čísla $\lambda_1$: 9.869612020518108
 
 
 <div class="output_markdown rendered_html output_subarea ">
-<h5 id="Porovn&#225;n&#237;-s-hodnotou-vypo&#269;tenou-numericky-(bisekc&#237;)-=-9.869625937280944">Porovn&#225;n&#237; s hodnotou vypo&#269;tenou numericky (bisekc&#237;) = 9.869625937280944<a class="anchor-link" href="#Porovn&#225;n&#237;-s-hodnotou-vypo&#269;tenou-numericky-(bisekc&#237;)-=-9.869625937280944">&#182;</a></h5>
+<h5 id="Porovn&#225;n&#237;-s-hodnotou-vypo&#269;tenou-numericky-(p&#367;len&#237;m-intervalu)-=-9.869625937280944">Porovn&#225;n&#237; s hodnotou vypo&#269;tenou numericky (p&#367;len&#237;m intervalu) = 9.869625937280944<a class="anchor-link" href="#Porovn&#225;n&#237;-s-hodnotou-vypo&#269;tenou-numericky-(p&#367;len&#237;m-intervalu)-=-9.869625937280944">&#182;</a></h5>
 </div>
 
 </div>
